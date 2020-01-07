@@ -28,6 +28,15 @@ module Types
         Micropost.all
     end
     
+    field :products, [Types::ProductType], null: false, description: 'ユーザ情報を全件取得する'
+    def products
+        Product.all
+    end
+    
+    field :lmicroposts, [Types::LmicropostType], null: false, description: 'ユーザ情報を全件取得する'
+    def lmicroposts
+        Lmicropost.all
+    end
     
 end
 end
