@@ -10,7 +10,7 @@ module Types
             "Hello World!"
         end
         
-        field :user, Types::UserType, null: false do
+    field :user, Types::UserType, null: false do
         description 'ユーザ情報を1件取得する'
         argument :id, Int, required: true, description: 'ユーザID'
     end
@@ -28,14 +28,31 @@ module Types
         Micropost.all
     end
     
+    def micropost(id:)
+        Micropost.find(id)
+    end
+    
     field :products, [Types::ProductType], null: false, description: 'ユーザ情報を全件取得する'
     def products
         Product.all
     end
     
+    def product(id:)
+        Product.find(id)
+    end
+
+    
     field :lmicroposts, [Types::LmicropostType], null: false, description: 'ユーザ情報を全件取得する'
     def lmicroposts
         Lmicropost.all
+    end
+    
+    field :lmicropost, Types::LmicropostType, null: false do
+        description 'ユーザ情報を1件取得する'
+        argument :id, Int, required: true, description: 'ユーザID'
+    end
+    def lmicropost(id:)
+        Lmicropost.find(id)
     end
     
 end

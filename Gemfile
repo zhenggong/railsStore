@@ -14,6 +14,9 @@ gem 'graphql'
 gem 'apollo_fetch_upload_rails_middleware'
 gem 'carrierwave',             '1.2.2'
 gem 'mini_magick',             '4.7.0'
+gem 'omniauth'
+gem 'devise'
+gem 'devise_token_auth'
 
 # Config
 gem 'config'

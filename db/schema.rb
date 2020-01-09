@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200107065307) do
+ActiveRecord::Schema.define(version: 20200108071131) do
 
   create_table "image_files", force: :cascade do |t|
     t.string "title"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20200107065307) do
     t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
     t.text "picture"
     t.integer "userid"
   end
@@ -41,20 +40,6 @@ ActiveRecord::Schema.define(version: 20200107065307) do
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.string "description"
-    t.float "total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "payments", force: :cascade do |t|
-    t.integer "order_id"
-    t.float "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.float "price"
@@ -63,6 +48,8 @@ ActiveRecord::Schema.define(version: 20200107065307) do
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "lmicropost_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,7 +59,11 @@ ActiveRecord::Schema.define(version: 20200107065307) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.text "tokens"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
 end
